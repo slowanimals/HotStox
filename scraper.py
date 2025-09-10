@@ -4,6 +4,7 @@ import praw
 import time
 from dotenv import load_dotenv
 import os
+import regex as re
 
 load_dotenv("credentials.env")
 USERNAME = os.getenv("REDDIT_USERNAME")
@@ -30,10 +31,11 @@ def fetch_submissions(subreddit, limit):
     for p in posts:
         data.append({
             "subreddit" : str(p.subreddit),
-            "submission id" : str(p.id),
+            "submission_id" : str(p.id),
             "author" : str(p.author) if p.author else None,
             "created_utc" : int(p.created_utc),
             "title" : str(p.title),
+            "body" : str(p.selftext),
             "url" : str(p.url),
             "selftext" : str(p.selftext),
             "score" : int(p.score),
@@ -72,3 +74,24 @@ cmts = fetch_top_comments("1ncqf7p")
 cmts_df = pd.DataFrame(cmts)
 print(cmts_df)
 '''
+
+def extract_tickers(df):
+    df_copy = df.copy()
+    pattern = re.compile(r'\$?[A-Z]{2,5}\b')
+    df_copy["content"] = df_copy["title"].fillna("") + df_copy["body"].fillna("")
+    df_copy["mentioned"] = df_copy["content"].apply(lambda text: pattern.findall(text))
+    df_copy["mentioned"] = df_copy["mentioned"].apply(lambda tickers: [t.lstrip("$") for t in tickers])
+    df_copy["mentioned"] = df_copy["mentioned"].apply(lambda tickers: list(set(t for t in tickers)))
+    return df_copy
+
+#get tickers from NASDAQ
+raw_tickers_df = pd.read_csv("nasdaq.csv")
+cleaned_tickers = raw_tickers_df["Symbol"].str.replace(r'[\^.-].*$', "")  # removes ^.- and anything after, anchored at end by $
+tickers = set(cleaned_tickers)
+
+#get dataframe of subreddit to analyze
+posts = pd.DataFrame(fetch_submissions("wallstreetbets", 20)) # top posts of the day
+# print(posts.info())
+extracted = extract_tickers(posts)
+print(extracted)
+
