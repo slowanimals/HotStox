@@ -1,12 +1,9 @@
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
 import praw
 import time
 from dotenv import load_dotenv
 import os
-
 
 load_dotenv("credentials.env")
 USERNAME = os.getenv("REDDIT_USERNAME")
@@ -15,6 +12,7 @@ CLIENT_ID = os.getenv("REDDIT_CLIENT_ID")
 CLIENT_SECRET = os.getenv("REDDIT_CLIENT_SECRET")
 USER_AGENT = os.getenv("REDDIT_USER_AGENT")
 
+#initiate reddit bot
 bot = praw.Reddit(username = USERNAME,
                   password = PASSWORD,
                   client_id = CLIENT_ID,
@@ -22,7 +20,9 @@ bot = praw.Reddit(username = USERNAME,
                   user_agent = USER_AGENT
                   )
 
-
+# INPUT: this function fetches a specified number of posts from a specified subreddit
+# it is currently set up to find the top posts of the past 24 hours
+# OUTPUT: a dictionary of the various attributes of each post
 def fetch_submissions(subreddit, limit):
     subreddit = bot.subreddit(subreddit)
     posts = subreddit.top(limit = limit, time_filter = "day")
@@ -43,12 +43,15 @@ def fetch_submissions(subreddit, limit):
             "permalink" : f'https://www.reddit.com{p.permalink}'
         })
     return data
-
+'''
 t50_res = fetch_submissions("wallstreetbets", 50)
 posts_df = pd.DataFrame(t50_res)
 print(posts_df.head(20))
+'''
 
-
+# INPUT: a post's submission id
+# this function fetches the top comments from a given post
+# OUTPUT: a dictionary of all the retrieved comments and their respective attributes
 def fetch_top_comments(submission_id):
     post = bot.submission(submission_id)
     post.comments.replace_more(limit = 0)
@@ -64,8 +67,8 @@ def fetch_top_comments(submission_id):
             "parent" : c.parent_id
         })
     return cmts
-
-
+'''
 cmts = fetch_top_comments("1ncqf7p")
 cmts_df = pd.DataFrame(cmts)
-# print(cmts_df)
+print(cmts_df)
+'''
