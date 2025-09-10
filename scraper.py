@@ -75,23 +75,26 @@ cmts_df = pd.DataFrame(cmts)
 print(cmts_df)
 '''
 
-def extract_tickers(df):
+def extract_tickers(df, nsdq):
     df_copy = df.copy()
+    stoplist = {"USA", "US", "YOLO", "GAINZ", "HODL", "IT", "CEO", "GDP"}
     pattern = re.compile(r'\$?[A-Z]{2,5}\b')
     df_copy["content"] = df_copy["title"].fillna("") + df_copy["body"].fillna("")
-    df_copy["mentioned"] = df_copy["content"].apply(lambda text: pattern.findall(text))
-    df_copy["mentioned"] = df_copy["mentioned"].apply(lambda tickers: [t.lstrip("$") for t in tickers])
-    df_copy["mentioned"] = df_copy["mentioned"].apply(lambda tickers: list(set(t for t in tickers)))
+    df_copy["p_mentioned"] = df_copy["content"].apply(lambda text: pattern.findall(text))
+    df_copy["p_mentioned"] = df_copy["p_mentioned"].apply(lambda tickers: [t.lstrip("$") for t in tickers])
+    df_copy["p_mentioned"] = df_copy["p_mentioned"].apply(lambda tickers: list(set(t for t in tickers)))
+    df_copy["p_mentioned"] = df_copy["p_mentioned"].apply(lambda tickers: [t for t in tickers if t not in stoplist])
+    df_copy["p_mentioned"] = df_copy["p_mentioned"].apply(lambda tickers: [t for t in tickers if t in nsdq])
     return df_copy
 
 #get tickers from NASDAQ
-raw_tickers_df = pd.read_csv("nasdaq.csv")
-cleaned_tickers = raw_tickers_df["Symbol"].str.replace(r'[\^.-].*$', "")  # removes ^.- and anything after, anchored at end by $
-tickers = set(cleaned_tickers)
+raw_nsdq_df = pd.read_csv("nasdaq.csv")
+cleaned_nsdq = raw_nsdq_df["Symbol"].str.replace(r'[\^.-].*$', "")  # removes ^.- and anything after, anchored at end by $
+nsdq = set(cleaned_nsdq)
 
 #get dataframe of subreddit to analyze
-posts = pd.DataFrame(fetch_submissions("wallstreetbets", 20)) # top posts of the day
+posts = pd.DataFrame(fetch_submissions("wallstreetbets", 100)) # top posts of the day
 # print(posts.info())
-extracted = extract_tickers(posts)
-print(extracted)
+extracted = extract_tickers(posts, nsdq)
+print(extracted.head(50))
 
