@@ -68,14 +68,16 @@ def fetch_top_comments(submission_id):
             "permalink" : f'https://www.reddit.com{c.permalink}',
             "parent" : c.parent_id
         })
-    return cmts
+    cmts_df = pd.DataFrame(cmts)
+    cmts_df["body"] = cmts_df["body"].fillna("")
+    return cmts_df
 '''
 cmts = fetch_top_comments("1ncqf7p")
 cmts_df = pd.DataFrame(cmts)
 print(cmts_df)
 '''
 
-def extract_tickers(df, nsdq):
+def post_extract_tickers(df, nsdq):
     df_copy = df.copy()
     stoplist = {"USA", "US", "YOLO", "GAINZ", "HODL", "IT", "CEO", "GDP"}
     pattern = re.compile(r'\$?[A-Z]{2,5}\b')
@@ -87,6 +89,18 @@ def extract_tickers(df, nsdq):
     df_copy["p_mentioned"] = df_copy["p_mentioned"].apply(lambda tickers: [t for t in tickers if t in nsdq])
     return df_copy
 
+def cmts_extract_tickers(id, nsdq):
+    df = fetch_top_comments(id)
+    stoplist = {"USA", "US", "YOLO", "GAINZ", "HODL", "IT", "CEO", "GDP"}
+    pattern = re.compile(r'\$?[A-Z]{2,5}\b')
+    df["c_mentioned"] = df["body"].apply(lambda text: pattern.findall(text))
+    df["c_mentioned"] = df["c_mentioned"].apply(lambda tickers: [t.lstrip("$") for t in tickers])
+    df["c_mentioned"] = df["c_mentioned"].apply(lambda tickers: list(set(t for t in tickers)))
+    df["c_mentioned"] = df["c_mentioned"].apply(lambda tickers: [t for t in tickers if t not in stoplist])
+    df["c_mentioned"] = df["c_mentioned"].apply(lambda tickers: [t for t in tickers if t in nsdq])
+    return df
+
+
 #get tickers from NASDAQ
 raw_nsdq_df = pd.read_csv("nasdaq.csv")
 cleaned_nsdq = raw_nsdq_df["Symbol"].str.replace(r'[\^.-].*$', "")  # removes ^.- and anything after, anchored at end by $
@@ -95,6 +109,10 @@ nsdq = set(cleaned_nsdq)
 #get dataframe of subreddit to analyze
 posts = pd.DataFrame(fetch_submissions("wallstreetbets", 100)) # top posts of the day
 # print(posts.info())
-extracted = extract_tickers(posts, nsdq)
-print(extracted.head(50))
+
+extracted = post_extract_tickers(posts, nsdq)
+# print(extracted.head())
+cmts_extracted = cmts_extract_tickers(extracted["submission_id"][2], nsdq)
+# print(cmts_extracted.head)
+
 
