@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 import praw
 import time
 from dotenv import load_dotenv
@@ -44,7 +43,7 @@ def fetch_submissions(subreddit, limit):
             "upvote_ratio" : float(p.upvote_ratio),
             "permalink" : f'https://www.reddit.com{p.permalink}'
         })
-    return data
+    return pd.DataFrame(data)
 '''
 t50_res = fetch_submissions("wallstreetbets", 50)
 posts_df = pd.DataFrame(t50_res)
@@ -107,7 +106,7 @@ cleaned_nsdq = raw_nsdq_df["Symbol"].str.replace(r'[\^.-].*$', "")  # removes ^.
 nsdq = set(cleaned_nsdq)
 
 #get dataframe of subreddit to analyze
-posts = pd.DataFrame(fetch_submissions("wallstreetbets", 100)) # top posts of the day
+posts = fetch_submissions("wallstreetbets", 100)  # top posts of the day
 # print(posts.info())
 
 extracted = post_extract_tickers(posts, nsdq)
