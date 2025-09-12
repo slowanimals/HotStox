@@ -5,7 +5,11 @@ from dotenv import load_dotenv
 import os
 import regex as re
 
-load_dotenv("credentials.env")
+# load_dotenv("credentials.env")
+
+bot = praw.Reddit('default')
+
+'''
 USERNAME = os.getenv("REDDIT_USERNAME")
 PASSWORD = os.getenv("REDDIT_PASSWORD")
 CLIENT_ID = os.getenv("REDDIT_CLIENT_ID")
@@ -19,10 +23,11 @@ bot = praw.Reddit(username = USERNAME,
                   client_secret = CLIENT_SECRET,
                   user_agent = USER_AGENT
                   )
+'''
 
 # INPUT: this function fetches a specified number of posts from a specified subreddit
 # it is currently set up to find the top posts of the past 24 hours
-# OUTPUT: a dictionary of the various attributes of each post
+# OUTPUT: a dataframe of the various attributes of each post
 def fetch_submissions(subreddit, limit):
     subreddit = bot.subreddit(subreddit)
     posts = subreddit.top(limit = limit, time_filter = "day")
@@ -43,7 +48,8 @@ def fetch_submissions(subreddit, limit):
             "upvote_ratio" : float(p.upvote_ratio),
             "permalink" : f'https://www.reddit.com{p.permalink}'
         })
-    return pd.DataFrame(data)
+    posts_df = pd.DataFrame(data)
+    return posts_df
 '''
 t50_res = fetch_submissions("wallstreetbets", 50)
 posts_df = pd.DataFrame(t50_res)
@@ -52,7 +58,7 @@ print(posts_df.head(20))
 
 # INPUT: a post's submission id
 # this function fetches the top comments from a given post
-# OUTPUT: a dictionary of all the retrieved comments and their respective attributes
+# OUTPUT: a dataframe of all the retrieved comments and their respective attributes
 def fetch_top_comments(submission_id):
     post = bot.submission(submission_id)
     post.comments.replace_more(limit = 0)
@@ -70,6 +76,7 @@ def fetch_top_comments(submission_id):
     cmts_df = pd.DataFrame(cmts)
     cmts_df["body"] = cmts_df["body"].fillna("")
     return cmts_df
+
 '''
 cmts = fetch_top_comments("1ncqf7p")
 cmts_df = pd.DataFrame(cmts)
@@ -99,11 +106,21 @@ def cmts_extract_tickers(id, nsdq):
     df["c_mentioned"] = df["c_mentioned"].apply(lambda tickers: [t for t in tickers if t in nsdq])
     return df
 
+def nsdq_tickers(csv):
+    raw_nsdq_df = pd.read_csv(csv)
+    cleaned_nsdq = raw_nsdq_df["Symbol"].str.replace(r'[\^.-].*$', "")
+    nsdq = set(cleaned_nsdq)
+    return nsdq
+
 
 #get tickers from NASDAQ
-raw_nsdq_df = pd.read_csv("nasdaq.csv")
-cleaned_nsdq = raw_nsdq_df["Symbol"].str.replace(r'[\^.-].*$', "")  # removes ^.- and anything after, anchored at end by $
-nsdq = set(cleaned_nsdq)
+# raw_nsdq_df = pd.read_csv("nasdaq.csv")
+# cleaned_nsdq = raw_nsdq_df["Symbol"].str.replace(r'[\^.-].*$', "")  # removes ^.- and anything after, anchored at end by $
+# nsdq = set(cleaned_nsdq)
+
+
+nsdq = nsdq_tickers("nasdaq.csv")
+# print(nsdq)
 
 #get dataframe of subreddit to analyze
 posts = fetch_submissions("wallstreetbets", 100)  # top posts of the day
@@ -114,4 +131,5 @@ extracted = post_extract_tickers(posts, nsdq)
 cmts_extracted = cmts_extract_tickers(extracted["submission_id"][2], nsdq)
 # print(cmts_extracted.head)
 
-
+cmts = fetch_top_comments("1ndwms0")
+# print(cmts)
