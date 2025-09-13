@@ -106,6 +106,7 @@ def cmts_extract_tickers(id, nsdq):
     df["c_mentioned"] = df["c_mentioned"].apply(lambda tickers: [t for t in tickers if t in nsdq])
     return df
 
+#simplified way to clean nasdaq csv, returns a list of tickers
 def nsdq_tickers(csv):
     raw_nsdq_df = pd.read_csv(csv)
     cleaned_nsdq = raw_nsdq_df["Symbol"].str.replace(r'[\^.-].*$', "")
