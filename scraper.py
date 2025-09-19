@@ -87,7 +87,7 @@ def post_extract_tickers(df, nsdq):
     df_copy = df.copy()
     stoplist = {"USA", "US", "YOLO", "GAINZ", "HODL", "IT", "CEO", "GDP"}
     pattern = re.compile(r'\$?[A-Z]{2,5}\b')
-    df_copy["content"] = df_copy["title"].fillna("") + df_copy["body"].fillna("")
+    df_copy["content"] = df_copy["title"].fillna("") + " " + df_copy["body"].fillna("")
     df_copy["p_mentioned"] = df_copy["content"].apply(lambda text: pattern.findall(text))
     df_copy["p_mentioned"] = df_copy["p_mentioned"].apply(lambda tickers: [t.lstrip("$") for t in tickers])
     df_copy["p_mentioned"] = df_copy["p_mentioned"].apply(lambda tickers: list(set(t for t in tickers)))
