@@ -1,0 +1,9 @@
+streamlit
+pandas
+praw
+dotenv
+regex
+yfinance
+huggingface_hub
+transformers
+torch
