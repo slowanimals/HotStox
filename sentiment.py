@@ -6,7 +6,7 @@ import os
 import scraper as sc
 
 load_dotenv("/Users/kaush/Documents/Hotstox/credentials.env")
-hf_token = os.getenv("HF_TOKEN")
+hf_token = st.secrets["HF_TOKEN"]
 client = InferenceClient(api_key = hf_token)
 
 clf = pipeline("text-classification", model="ProsusAI/finbert")
