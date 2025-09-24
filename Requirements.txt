@@ -2,8 +2,6 @@ streamlit
 pandas
 numpy
 yfinance
-plotly
-financedatabase
 praw
 transformers
 torch
