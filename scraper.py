@@ -1,7 +1,7 @@
 import pandas as pd
 import praw
 import time
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 import os
 import regex as re
 
