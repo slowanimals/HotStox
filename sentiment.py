@@ -1,11 +1,11 @@
 import pandas as pd
 from huggingface_hub import InferenceClient
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 from transformers import pipeline
 import os
 import scraper as sc
 
-load_dotenv("/Users/kaush/Documents/Hotstox/credentials.env")
+# load_dotenv("/Users/kaush/Documents/Hotstox/credentials.env")
 hf_token = st.secrets["HF_TOKEN"]
 client = InferenceClient(api_key = hf_token)
 
