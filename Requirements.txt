@@ -1,9 +1,10 @@
 streamlit
 pandas
-praw
-dotenv
-regex
+numpy
 yfinance
-huggingface_hub
+plotly
+financedatabase
+praw
 transformers
 torch
+huggingface_hub
