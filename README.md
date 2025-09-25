@@ -29,10 +29,10 @@ This application utilizes a:
 ## Ranker
 - Combines data from the scraper and sentiment model
 - Evaluates a clear final score for each ticker, and then ranks the them by their respective scores
-- Ranks based on (in order of emphasis):
+- Ranking based on (in order of emphasis):
   - Average FinBERT score of the body of posts for each ticker
   - Average FinBERT score of comments for each ticker
-  - Amount of mentions each respective ticker has
+  - Amount of mentions each  ticker has
   - Upvote Ratio
   - Upvotes
 
