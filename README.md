@@ -17,6 +17,7 @@ This application utilizes a:
 - Reddit scraper
 - Financial sentiment analysis model (NLP)
 - Ranking algorithm created and tuned by me
+- Streamlit dashboard for visualization
 
 ## Scraper:
 - Uses **PRAW** to scrape any subreddit with adjustable parameters for the subreddit, amount of posts desired, filter to sort the posts by
