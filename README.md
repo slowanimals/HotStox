@@ -1,6 +1,6 @@
 # HotStox
 
-#### Link: https://hotstox.streamlit.app/
+##### Link: https://hotstox.streamlit.app/
 
 #### Have you ever felt FOMO from failing to cash in on a hype stock? If that's the case, I present you a solution ;)
 #### HotStox is a sentiment-analysis model that finds, ranks, and visualizes trending stock tickers across various Reddit investment communities so that you can catch the next big trend before any headlines do
