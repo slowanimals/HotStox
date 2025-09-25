@@ -53,7 +53,7 @@ This application utilizes a:
 - **Sentiment/Ranking caching**: Since the pipeline takes nearly a minute or more to process, results are cached for about 15 minutes
 
 ## Lessons Learned
-- This is the first programming project that I've completed end-to-end, and was an absolute joy to tinker with
+- This is the first programming project that I've completed end-to-end, and it was an absolute joy see come to life
 - It taught me:
   - How to build ML pipelines
   - How to create Python dependencies
