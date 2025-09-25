@@ -67,7 +67,7 @@ if update:
         
         for rank, row in df.head(50).iterrows():
             ticker = row['p_mentioned']
-            sentiment = row['average_sent']
+            sentiment = row['avg_sent']
             current_price = prices.get(ticker, "N/A")
             
             col1, col2 = st.columns([1,3])
@@ -78,11 +78,10 @@ if update:
             col1.write(f"### {rank}. **{ticker}** \n ${current_price}")
             if(sentiment < 0.4):
                 indicator = 'Negative'
-            if(sentiment > 0.6):
+            elif(sentiment > 0.6):
                 indicator = 'Positive'
             else:
                 indicator = 'Neutral'
-            
             col1.write(f"Sentiment: {indicator}")
             
             st.divider()
