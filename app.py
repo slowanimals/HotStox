@@ -58,7 +58,7 @@ def get_price(tickers):
 
 if update:
     with st.spinner("Crunching Reddit stock data...", show_time=True):
-        df = rank.run_ranker(sub,1000,filter)
+        df = insanelycomplexfunction(sub,1000,filter)
         top_tickers = df['p_mentioned'].head(50).tolist()
         sentiment = df['avg_sent'].head(50).tolist()
         
