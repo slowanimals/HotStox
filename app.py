@@ -95,4 +95,4 @@ if update:
             st.divider()
 
             data = yf.download(ticker, period="1mo")['Close']
-            col2.line_chart(data, y_label = "Price")
+            col2.line_chart(data, y_label = "Price", x_label = "Date")
