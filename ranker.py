@@ -40,7 +40,7 @@ def rank(df):
     )
 
     #get avg sentiment
-    rank['avg_sent'] = (df['post_sent'] + df['cmt_sent']) / 2 
+    rank['avg_sent'] = (rank['post_sent'] + rank['cmt_sent']) / 2 
 
 
     #finally rank by the scores given
