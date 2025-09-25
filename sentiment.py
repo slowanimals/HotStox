@@ -4,6 +4,7 @@ from huggingface_hub import InferenceClient
 from transformers import pipeline
 import os
 import scraper as sc
+import streamlit as st
 
 # load_dotenv("/Users/kaush/Documents/Hotstox/credentials.env")
 hf_token = st.secrets["HF_TOKEN"]
