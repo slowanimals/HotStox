@@ -51,38 +51,38 @@ def get_price(tickers):
         try:
             prices[t] = round(df[t]['Close'].iloc[-1],2)
         except Exception:
-            prices[t] = None
+            price[t] = None
     return prices
 
 # x = st.slider("number of rows", max_value = 15)
 
 if update:
     with st.spinner("Crunching Reddit stock data...", show_time=True):
-        df = insanelycomplexfunction(sub,1000,filter)
-        
-        top_tickers = df['p_mentioned'].head(50).tolist()
-        #sentiment = df['average_sent'].head(50).tolist()
+        df = rank.run_ranker(sub,1000,filter)
+        top_tickers = df['p_mentioned'].head(10).tolist()
         
         prices = get_price(top_tickers)
         
-        for rank, row in df.head(50).sort_values(by='score_final',ascending=False).iterrows():
-            ticker = row['p_mentioned']
-            sentiment = row['avg_sent']
-            current_price = prices.get(ticker, "N/A")
-            
+        for rank, ticker in enumerate(top_tickers, start=1):
             col1, col2 = st.columns([1,3])
-            
+            current_price = prices.get(ticker, "N/A")
+
             # yticker = yf.Ticker(ticker)
             # current_price = round(yticker.fast_info['lastPrice'], 2)
 
             col1.write(f"### {rank}. **{ticker}** \n ${current_price}")
-            if(sentiment < 0.4):
-                indicator = 'Negative'
-            elif(sentiment > 0.6):
-                indicator = 'Positive'
-            else:
-                indicator = 'Neutral'
-            col1.write(f"Sentiment: {indicator}")
+            
+            # yticker = yf.Ticker(ticker)
+            # current_price = round(yticker.fast_info['lastPrice'], 2)
+
+            #col1.write(f"### {rank}. **{ticker}** \n ${current_price}")
+            #if(sentiment < 0.4):
+            #    indicator = 'Negative'
+            #elif(sentiment > 0.6):
+             #   indicator = 'Positive'
+            #else:
+            #    indicator = 'Neutral'
+            #col1.write(f"Sentiment: {indicator}")
             
             st.divider()
 
