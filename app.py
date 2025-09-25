@@ -71,9 +71,9 @@ if update:
             # yticker = yf.Ticker(ticker)
             # current_price = round(yticker.fast_info['lastPrice'], 2)
 
-            if(sentiment[i] < 0.34):
+            if(sentiment[i] < 0.4):
                 color = "red"
-            elif (sentiment[i] > 0.67):
+            elif (sentiment[i] > 0.7):
                 color = "green"
             else:
                 color = "orange"
