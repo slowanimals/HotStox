@@ -1,3 +1,3 @@
-<img width="445" height="445" alt="hotstox logo" src="https://github.com/user-attachments/assets/a1f0673a-200b-43ba-bef0-376862095e9f" />
+![hotstoxlogo](https://github.com/user-attachments/assets/2023706c-9c5f-4eb8-af54-a849af733d69)
 
 https://hotstox.streamlit.app/
