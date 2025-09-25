@@ -12,7 +12,7 @@ HotStox is a sentiment-analysis model that finds, ranks, and visualizes trending
 - yfinance
 - Regex
 
-##Overview:
+## Overview:
 This application utilizes a: 
 - Reddit scraper
 - Financial sentiment analysis model (NLP)
