@@ -19,7 +19,7 @@ This application utilizes a:
 - Ranking algorithm created and tuned by me
 
 ## Scraper:
-- Uses **PRAW** to scrape any subreddit with adjustable parameters for the subreddit, amount of posts desired, the filter to sort the posts by
+- Uses **PRAW** to scrape any subreddit with adjustable parameters for the subreddit, amount of posts desired, filter to sort the posts by
 - **Designed to scalable**, so the scraper can be used for more general purposes, and only is targetting stock tickers from helper functions that I created
 
 ## Sentiment Analysis
