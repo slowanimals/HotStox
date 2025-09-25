@@ -72,13 +72,13 @@ if update:
             # current_price = round(yticker.fast_info['lastPrice'], 2)
 
             if(sentiment[i] < 0.34):
-                color = red 
+                color = "red"
             elif (sentiment[i] > 0.67):
-                color = green 
+                color = "green"
             else:
-                color = yellow 
+                color = "orange"
             
-            col1.write(f"### {rank}. :color[**{ticker}**] \n ${current_price}")
+            col1.write(f"### {rank}. :{color}[**{ticker}**] \n ${current_price}")
             i += 1
             # yticker = yf.Ticker(ticker)
             # current_price = round(yticker.fast_info['lastPrice'], 2)
