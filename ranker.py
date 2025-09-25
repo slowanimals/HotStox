@@ -40,7 +40,7 @@ def rank(df):
     )
 
     #get avg sentiment
-    rank['avg_sent'] = (rank['post_sent'] + rank['cmt_sent']) / 2 
+    #rank['avg_sent'] = (rank['post_sent'] + rank['cmt_sent']) / 2 
 
 
     #finally rank by the scores given
@@ -51,5 +51,6 @@ def rank(df):
 def run_ranker(subreddit, amount, filter):
     df = sent.run_sent(subreddit,amount,filter)
     ranked_df = rank(df)
+    ranked_df['avg_sent'] = (ranked_df['post_sent'] + ranked_df['cmt_sent']) / 2 
     return ranked_df
 
