@@ -1,6 +1,7 @@
 # HotStox
 
-HotStox is a sentiment-analysis model that finds, ranks, and visualizes trending stock tickers across various Reddit investment communities 
+### Have you ever felt FOMO from failing to cash in on a hype-stock? Well, I present you a solution ;)
+### HotStox is a sentiment-analysis model that finds, ranks, and visualizes trending stock tickers across various Reddit investment communities 
 
 <img width="648" height="473" alt="Screenshot 2025-09-25 at 9 50 12 AM" src="https://github.com/user-attachments/assets/1db52c46-2cc8-477e-a7bf-7c3b7ad78c7c" />
 
@@ -44,5 +45,15 @@ This application utilizes a:
   - 🟢 = positive
   - 🟡 = neutral
   - 🔴 = negative
+## Optimizations
+- **yfinance caching**: Stock data is cached for about 10 minutes to reduce API calls and avoid rate limits
+- **Sentiment/Ranking caching*** Since the pipeline takes nearly a minute or more to process, results are cached for about 15 minutes
 
+## Lessons Learned
+- This is the first programming project that I've completed end-to-end, and was an absolute joy to tinker with
+- It taught me:
+  - How to build ML pipelines
+  - How to create Python dependencies
+  - How to create a clean UI
+  - And that programming is really fun!
 https://hotstox.streamlit.app/
