@@ -9,8 +9,8 @@ import streamlit as st
 # load_dotenv("credentials.env")
 
 bot = praw.Reddit(
-    # username=st.secrets["REDDIT_USERNAME"],
-    # password=st.secrets["REDDIT_PASSWORD"],
+    username=st.secrets["REDDIT_USERNAME"],
+    password=st.secrets["REDDIT_PASSWORD"],
     client_id=st.secrets["REDDIT_CLIENTID"],
     client_secret=st.secrets["REDDIT_CLIENTSECRET"],
     user_agent=st.secrets["REDDIT_USER_AGENT"],
