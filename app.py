@@ -41,10 +41,15 @@ with col2:
 
 
 @st.cache_data(ttl=900)
-def get_price(ticker):
-    yticker = yf.Ticker(ticker)
-    price = round(yticker.fast_info['lastPrice'], 2)
-    return price
+def get_price(tickers):
+    yticker = yf.download(tickers, period='1d', group_by="ticker",auto_adjust=False)
+    prices = {}
+    for t in tickers:
+        try:
+            prices[t] = roud(df[t]['Close'].iloc[-1],2)
+        except Exception:
+            last_prices[t] = None
+    return prices
 
 # x = st.slider("number of rows", max_value = 15)
 
@@ -55,10 +60,11 @@ if update:
         
         for rank, ticker in enumerate(top_tickers, start=1):
             col1, col2 = st.columns([1,3])
-
+            prices = get_price(tickers)
+            
             # yticker = yf.Ticker(ticker)
             # current_price = round(yticker.fast_info['lastPrice'], 2)
-            current_price = get_price(ticker)
+
             col1.write(f"### {rank}. **{ticker}** \n ${current_price}")
             
             st.divider()
