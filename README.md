@@ -24,7 +24,8 @@ This application utilizes a:
 
 ## Scraper:
 - Uses **PRAW** to scrape any subreddit with adjustable parameters for the subreddit, amount of posts desired, filter to sort the posts by
-- **Designed to scalable**, so the scraper can be used for more general purposes, and only is targetting stock tickers from helper functions that I created
+- **Designed to scalable** so that the scraper can be used for more general purposes
+  - It is only is targetting stock tickers from helper functions that I created
 
 ## Sentiment Analysis
 - Uses FinBERT by ProsusAI to process the scraped data
