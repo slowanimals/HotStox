@@ -76,7 +76,7 @@ if update:
             elif (sentiment[i] > 0.7):
                 color = "green"
             else:
-                color = "orange"
+                color = "yellow"
             
             col1.write(f"### {rank}. :{color}[**{ticker}**] \n ${current_price}")
             i += 1
