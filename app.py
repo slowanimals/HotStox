@@ -78,7 +78,7 @@ if update:
             else:
                 color = "yellow"
             
-            col1.write(f"### {rank}. :{color}[**{ticker}**] \n ${current_price}")
+            col1.write(f"### {rank}. :{color}[**{ticker}**] \n ${current_price} USD")
             i += 1
             # yticker = yf.Ticker(ticker)
             # current_price = round(yticker.fast_info['lastPrice'], 2)
