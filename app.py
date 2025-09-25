@@ -68,20 +68,18 @@ if update:
         for rank, ticker in enumerate(top_tickers, start=1):
             col1, col2 = st.columns([1,3])
             current_price = prices.get(ticker, "N/A")
-            current_sent = sentiment[i]
-
             # yticker = yf.Ticker(ticker)
             # current_price = round(yticker.fast_info['lastPrice'], 2)
 
-            if(current_sent < 0.34):
+            if(sentiment[i] < 0.34):
                 color = red 
-            elif (current_sent > 0.67):
+            elif (sentiment[i] > 0.67):
                 color = green 
             else:
                 color = yellow 
             
             col1.write(f"### {rank}. :color[**{ticker}**] \n ${current_price}")
-            
+            i += 1
             # yticker = yf.Ticker(ticker)
             # current_price = round(yticker.fast_info['lastPrice'], 2)
 
