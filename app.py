@@ -65,7 +65,7 @@ if update:
         
         prices = get_price(top_tickers)
         
-        for rank, row in df.head(50).iterrows():
+        for rank, row in df.head(50).sort_values(by='score_final',ascending=False).iterrows():
             ticker = row['p_mentioned']
             sentiment = row['avg_sent']
             current_price = prices.get(ticker, "N/A")
