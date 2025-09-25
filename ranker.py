@@ -38,6 +38,9 @@ def rank(df):
         0.6 * rank['upvotes']
     )
 
+    #get avg sentiment
+    df['avg_sent'] = (df['post_sent'] + df['cmt_sent']) / 2 
+
     #finally rank by the scores given
     rank = rank.reset_index().sort_values('score_final', ascending = False)
     return rank

@@ -51,7 +51,7 @@ def get_price(tickers):
         try:
             prices[t] = round(df[t]['Close'].iloc[-1],2)
         except Exception:
-            price[t] = None
+            prices[t] = None
     return prices
 
 # x = st.slider("number of rows", max_value = 15)
@@ -59,18 +59,31 @@ def get_price(tickers):
 if update:
     with st.spinner("Crunching Reddit stock data...", show_time=True):
         df = insanelycomplexfunction(sub,1000,filter)
-        top_tickers = df['p_mentioned'].head(10).tolist()
+        
+        top_tickers = df['p_mentioned'].head(50).tolist()
+        #sentiment = df['average_sent'].head(50).tolist()
         
         prices = get_price(top_tickers)
         
-        for rank, ticker in enumerate(top_tickers, start=1):
-            col1, col2 = st.columns([1,3])
+        for rank, row in df.head(50).iterrows():
+            ticker = row['p_mentioned']
+            sentiment = row['average_sent']
             current_price = prices.get(ticker, "N/A")
-
+            
+            col1, col2 = st.columns([1,3])
+            
             # yticker = yf.Ticker(ticker)
             # current_price = round(yticker.fast_info['lastPrice'], 2)
 
             col1.write(f"### {rank}. **{ticker}** \n ${current_price}")
+            if(sentiment < 0.4):
+                indicator = 'Negative'
+            if(sentiment > 0.6):
+                indicator = 'Positive'
+            else:
+                indicator = 'Neutral'
+            
+            col1.write(f"Sentiment: {indicator}")
             
             st.divider()
 
