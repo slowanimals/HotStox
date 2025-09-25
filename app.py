@@ -40,7 +40,7 @@ with col2:
                        )
 
 @st.cache_data(ttl = 660)
-def cache_run_rank(sub, amount, filter):
+def insanelycomplexfunction(sub, amount, filter): #cached version of run_rank function
     return rank.run_ranker(sub,amount,filter)
 
 @st.cache_data(ttl=900)
@@ -58,7 +58,7 @@ def get_price(tickers):
 
 if update:
     with st.spinner("Crunching Reddit stock data...", show_time=True):
-        df = cache_run_rank(sub,1000,filter)
+        df = insanelycomplexfunction(sub,1000,filter)
         top_tickers = df['p_mentioned'].head(10).tolist()
         
         prices = get_price(top_tickers)
