@@ -1,4 +1,4 @@
-![hotstoxlogo](https://github.com/user-attachments/assets/2023706c-9c5f-4eb8-af54-a849af733d69)
+![hotstoxlogo](https://github.com/user-attachments/assets/445ead06-05c2-43e8-91c8-ffe35ea15374)
 
 HotStox is a sentiment-analysis model that finds, ranks, and visualizes trending stock tickers across various investment communities in Reddit
 
