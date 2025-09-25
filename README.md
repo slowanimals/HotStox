@@ -1,15 +1,47 @@
 ![hotstoxlogo](https://github.com/user-attachments/assets/2023706c-9c5f-4eb8-af54-a849af733d69)
 
-HotStox is a sentiment-analysis model that finds, ranks, and visualizes trending stock tickers across various investment communities in Reddit, with the current options being r/wallstreetbets, r/investing, and r/stocks (more will be added in the future).
+HotStox is a sentiment-analysis model that finds, ranks, and visualizes trending stock tickers across various investment communities in Reddit
 
-<img width="973" height="710" alt="Screenshot 2025-09-25 at 9 19 33 AM" src="https://github.com/user-attachments/assets/1a5e48ca-5745-4b73-924f-428d0ca813fe" />
+<img width="973" height="710" alt="Screenshot 2025-09-25 at 9 50 12 AM" src="https://github.com/user-attachments/assets/1db52c46-2cc8-477e-a7bf-7c3b7ad78c7c" />
 
-## How It's Made:
-**Tech Used**: Python, FinBERT (Hugging Face Inference), Streamlit, Pandas, yfinance, Regex
-This application utilizes a scraper, financial sentiment analysis model via natural language processing, and a ranking algorithm created and tuned by me. \n
-The scraper uses PRAW to scrape any subreddit with adjustable parameters for the subreddit, amount of posts desired, the filter to sort the posts by. Because its scalability, the scraper can be used for more general purposes, and only is targetting stock tickers from helper functions that I created. \n
-The sentiment analysis model uses FinBERT by ProsusAI to process the scraped data. It returns a pandas dataframe that provides vital information about the sentiment of a post's body as well as the average sentiment of its corresponding comments. \n
-The ranker takes in data from the scraper and sentiment model to evaluate a clear final score for each ticker, and then ranks the them by their respective scores. I've designed the ranking system to place an emphasis on the average sentiment score for the posts, and comments, as well as the amount of mentions each respective ticker has. \n
-Based on the ranker's results, a dataframe is fed into a Streamlit interface for visualization. The interface displays each ticker in order of ranking and also uses data from yfinance to create a visual chart of the past month of each stock's performance. Additionally, each ticker is given a color for its sentiment, green meaning positive, yellow meaning neutral, and red meaning negative.
+## Tech Used:
+- Python
+- FinBERT (via Hugging Face)
+- Streamlit
+- Pandas
+- yfinance
+- Regex
+
+##Overview:
+This application utilizes a: 
+- Reddit scraper
+- Financial sentiment analysis model (NLP)
+- Ranking algorithm created and tuned by me
+
+## Scraper:
+- Uses **PRAW** to scrape any subreddit with adjustable parameters for the subreddit, amount of posts desired, the filter to sort the posts by
+- **Designed to scalable**, so the scraper can be used for more general purposes, and only is targetting stock tickers from helper functions that I created
+
+## Sentiment Analysis
+- Uses FinBERT by ProsusAI to process the scraped data
+- Returns a pandas dataframe that provides vital information about the sentiment of a post's body as well as the average sentiment of its corresponding comments
+
+## Ranker
+- Combines data from the scraper and sentiment model
+- Evaluates a clear final score for each ticker, and then ranks the them by their respective scores
+- Ranks based on (in order of emphasis):
+  - Average FinBERT score of the body of posts for each ticker
+  - Average FinBERT score of comments for each ticker
+  - Amount of mentions each respective ticker has
+  - Upvote Ratio
+  - Upvotes
+
+## Dashboard
+- Based on the ranker's results, a dataframe is fed into a Streamlit interface for visualization
+- Diplays each ticker in order of ranking alongside a visual chart of data from yfinance
+- Additionally, each ticker is given a color for its sentiment:
+  - 🟢 = positive
+  - 🟡 = neutral
+  - 🔴 = negative
 
 https://hotstox.streamlit.app/
