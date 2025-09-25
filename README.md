@@ -43,7 +43,7 @@ This application utilizes a:
 
 ## Dashboard
 - Based on the ranker's results, a dataframe is fed into a Streamlit interface for visualization
-- Diplays each ticker in order of ranking alongside a visual chart of data from yfinance
+- It diplays each ticker in order of ranking alongside a visual chart of data from yfinance
 - Additionally, each ticker is given a color for its sentiment:
   - 🟢 = positive
   - 🟡 = neutral
