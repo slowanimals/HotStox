@@ -50,7 +50,7 @@ This application utilizes a:
   - 🔴 = negative
 ## Optimizations
 - **yfinance caching**: Stock data is cached for about 10 minutes to reduce API calls and avoid rate limits
-- **Sentiment/Ranking caching** Since the pipeline takes nearly a minute or more to process, results are cached for about 15 minutes
+- **Sentiment/Ranking caching**: Since the pipeline takes nearly a minute or more to process, results are cached for about 15 minutes
 
 ## Lessons Learned
 - This is the first programming project that I've completed end-to-end, and was an absolute joy to tinker with
