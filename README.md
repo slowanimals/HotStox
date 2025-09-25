@@ -56,6 +56,7 @@ This application utilizes a:
 - It taught me:
   - How to build ML pipelines
   - How to create Python dependencies
+  - How to debug and structure a project across multiple files
+  - How to integrate multiple API's and work around their rate limits
   - How to create a clean UI
-  - And that programming is really fun!
-https://hotstox.streamlit.app/
+  - And that programming is **so much** fun!
