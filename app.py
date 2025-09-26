@@ -27,6 +27,7 @@ with col1:
 with col2:
     st.write("")
     st.write("")
+    st.write("")
     update = st.button("Update", 
                        type="primary",
                        width= "stretch"
