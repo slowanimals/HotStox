@@ -22,7 +22,7 @@ with col1:
         ("wallstreetbets", "stocks", "options" "investing", "stockmarket"),
         width="stretch"
     )
-# st.markdown("")
+st.markdown("")
 
 with col2:
     st.write("")
