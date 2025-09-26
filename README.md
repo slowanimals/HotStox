@@ -29,8 +29,8 @@ This application utilizes a:
   - It is only is targetting stock tickers from helper functions that I created
 
 ## Sentiment Analysis
-- Uses FinBERT by ProsusAI to process the scraped data
-- Returns a pandas dataframe that provides vital information about the sentiment of a post's body as well as the average sentiment of its corresponding comments
+- Uses **FinBERT** by ProsusAI to process the scraped data
+- Returns a **pandas** dataframe that provides vital information about the sentiment of a post's body as well as the average sentiment of its corresponding comments
 
 ## Ranker
 - Combines data from the scraper and sentiment model
