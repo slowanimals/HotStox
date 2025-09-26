@@ -19,7 +19,7 @@ with col1:
     left, right = st.columns(2)
     sub = st.selectbox(
         "Select a subreddit",
-        ("wallstreetbets", "stocks", "options" "investing", "stockmarket"),
+        ("wallstreetbets", "stocks", "options" ,"investing", "stockmarket"),
         width="stretch"
     )
 # st.markdown("")
