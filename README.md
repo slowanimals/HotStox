@@ -5,7 +5,8 @@
 #### Have you ever felt FOMO from failing to cash in on a hype stock? If that's the case, I present to you a solution!
 #### HotStox is a sentiment-analysis model that finds, ranks, and visualizes trending stock tickers across various Reddit investment communities so that you can catch the next big trend before any headlines do
 
-<img width="648" height="473" alt="Screenshot 2025-09-25 at 2 27 59 PM" src="https://github.com/user-attachments/assets/322da987-5529-4d49-8d93-c097f93e3826" />
+<img width="648" height="473" alt="Screenshot 2025-09-25 at 7 37 18 PM" src="https://github.com/user-attachments/assets/144832da-6f6a-4da9-9b72-d7d0d110b5df" />
+
 
 ## Tech Used:
 - Python
