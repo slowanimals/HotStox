@@ -17,19 +17,11 @@ col1, col_space, col2= st.columns([2,1,2])
 
 with col1:
     left, right = st.columns(2)
-    with left:
-        sub = st.selectbox(
-            "Select a subreddit",
-            ("wallstreetbets","stocks", "investing"),
-            width="stretch"
-        )
-    with right:
-        filter = st.selectbox(
-            "Filter by:",
-            ("day", "week", "year", "all"),
-            width = "stretch"
-        )
-
+    sub = st.selectbox(
+        "Select a subreddit",
+        ("wallstreetbets", "stocks", "options" "investing", "stockmarket"),
+        width="stretch"
+    )
 # st.markdown("")
 
 with col2:
@@ -58,7 +50,7 @@ def get_price(tickers):
 
 if update:
     with st.spinner("Crunching Reddit stock data...", show_time=True):
-        df = insanelycomplexfunction(sub,1000,filter)
+        df = insanelycomplexfunction(sub,1000,"day")
         top_tickers = df['p_mentioned'].head(50).tolist()
         sentiment = df['avg_sent'].head(50).tolist()
         
