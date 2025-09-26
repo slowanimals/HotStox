@@ -48,9 +48,10 @@ def get_price(tickers):
     return prices
 
 # x = st.slider("number of rows", max_value = 15)
-st.write("")
-st.divider()
+
 if update:
+    st.write("")
+    st.divider()
     with st.spinner("Crunching Reddit stock data...", show_time=True):
         df = insanelycomplexfunction(sub,1000,"day")
         top_tickers = df['p_mentioned'].head(50).tolist()
