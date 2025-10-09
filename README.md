@@ -61,4 +61,3 @@ This application utilizes a:
   - How to debug and structure a project across multiple files
   - How to integrate multiple API's and work around their rate limits
   - How to create a clean UI
-  - And that programming is **so much** fun!
