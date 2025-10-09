@@ -23,7 +23,7 @@ This application utilizes a:
 - Ranking algorithm created and tuned by me
 - Streamlit dashboard for visualization
 
-## Scraper:
+## Scraper
 - Uses **PRAW** to scrape any subreddit with adjustable parameters for the subreddit, amount of posts desired, filter to sort the posts by
 - **Designed to scalable** so that the scraper can be used for more general purposes
   - It is only is targetting stock tickers from helper functions that I created
