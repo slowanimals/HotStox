@@ -3,9 +3,10 @@
 ##### Link: https://hotstox.streamlit.app/
 
 #### Have you ever felt FOMO from failing to cash in on a hype stock? If that's the case, I present to you a solution!
-#### HotStox is a sentiment-analysis model that finds, ranks, and visualizes trending stock tickers across various Reddit investment communities so that you can catch the next big trend before any headlines do
+#### HotStox is a sentiment-analysis application that finds, ranks, and visualizes trending stock tickers across various Reddit investment communities so that you can catch the next big trend before any headlines do
 
-<img width="648" height="473" alt="Screenshot 2025-09-25 at 2 27 59 PM" src="https://github.com/user-attachments/assets/322da987-5529-4d49-8d93-c097f93e3826" />
+<img width="648" height="473" alt="Screenshot 2025-09-25 at 7 37 18 PM" src="https://github.com/user-attachments/assets/144832da-6f6a-4da9-9b72-d7d0d110b5df" />
+
 
 ## Tech Used:
 - Python
@@ -22,14 +23,14 @@ This application utilizes a:
 - Ranking algorithm created and tuned by me
 - Streamlit dashboard for visualization
 
-## Scraper:
+## Scraper
 - Uses **PRAW** to scrape any subreddit with adjustable parameters for the subreddit, amount of posts desired, filter to sort the posts by
 - **Designed to scalable** so that the scraper can be used for more general purposes
   - It is only is targetting stock tickers from helper functions that I created
 
 ## Sentiment Analysis
-- Uses FinBERT by ProsusAI to process the scraped data
-- Returns a pandas dataframe that provides vital information about the sentiment of a post's body as well as the average sentiment of its corresponding comments
+- Uses **FinBERT** by ProsusAI to process the scraped data
+- Returns a **pandas** dataframe that provides vital information about the sentiment of a post's body as well as the average sentiment of its corresponding comments
 
 ## Ranker
 - Combines data from the scraper and sentiment model
@@ -60,4 +61,3 @@ This application utilizes a:
   - How to debug and structure a project across multiple files
   - How to integrate multiple API's and work around their rate limits
   - How to create a clean UI
-  - And that programming is **so much** fun!
