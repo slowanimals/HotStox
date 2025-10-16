@@ -96,7 +96,7 @@ print(cmts_df)
 #compares post bodies to nsdq and then adds a col of mentioned tickers
 def post_extract_tickers(df, nsdq):
     df_copy = df.copy()
-    stoplist = {"AI", "USA", "US", "YOLO", "GAINZ", "HODL", "IT", "CEO", "GDP", "UK"}
+    stoplist = {"AI", "USA", "US", "YOLO", "GAINZ", "HODL", "IT", "CEO", "GDP", "UK", "DD"}
     pattern = re.compile(r'\$?[A-Z]{2,5}\b')
     df_copy["content"] = df_copy["title"].fillna("") + " " + df_copy["body"].fillna("")
     df_copy["p_mentioned"] = df_copy["content"].apply(lambda text: pattern.findall(text))
@@ -108,7 +108,7 @@ def post_extract_tickers(df, nsdq):
 
 def cmts_extract_tickers(id, nsdq):
     df = fetch_top_comments(id)
-    stoplist = {"USA", "US", "YOLO", "GAINZ", "HODL", "IT", "CEO", "GDP"}
+    stoplist = {"AI", "USA", "US", "YOLO", "GAINZ", "HODL", "IT", "CEO", "GDP", "UK", "DD"}
     pattern = re.compile(r'\$?[A-Z]{2,5}\b')
     df["c_mentioned"] = df["body"].apply(lambda text: pattern.findall(text))
     df["c_mentioned"] = df["c_mentioned"].apply(lambda tickers: [t.lstrip("$") for t in tickers])
