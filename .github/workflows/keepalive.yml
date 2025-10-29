@@ -1,5 +1,4 @@
 # This is a basic workflow that is manually triggered
-
 name: Keep HotStox Alive
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
@@ -9,22 +8,25 @@ on:
     - cron: "0 0 * * *"
   workflow_dispatch:
 
+# Add explicit permissions for the GITHUB_TOKEN
 permissions:
   contents: write
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   keepalive:
     runs-on: ubuntu-latest
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Runs a single command using the runners shell
     - name: Checkout repo
       uses: actions/checkout@v4
-
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
     - name: Make empty commit
       run: |
         git config user.name "github-actions[bot]"
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git commit --allow-empty -m "keepalive: $(date)"
-        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref }}
+        git push
