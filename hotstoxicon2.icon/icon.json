@@ -1,0 +1,55 @@
+{
+  "fill" : {
+    "solid" : "display-p3:0.94134,0.94134,0.94134,1.00000"
+  },
+  "groups" : [
+    {
+      "layers" : [
+        {
+          "blend-mode" : "hard-light",
+          "fill" : {
+            "linear-gradient" : [
+              "display-p3:0.82766,0.09079,0.00000,1.00000",
+              "display-p3:0.90583,0.41088,0.00000,1.00000"
+            ],
+            "orientation" : {
+              "start" : {
+                "x" : 0.5,
+                "y" : 0
+              },
+              "stop" : {
+                "x" : 0.5000000000000001,
+                "y" : 1.1088733006487115
+              }
+            }
+          },
+          "glass" : true,
+          "image-name" : "hotstoxlogo copy.png",
+          "name" : "hotstoxlogo copy",
+          "opacity" : 1,
+          "position" : {
+            "scale" : 1.2,
+            "translation-in-points" : [
+              0.6499999999999773,
+              -2.6000000000000227
+            ]
+          }
+        }
+      ],
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "circles" : [
+      "watchOS"
+    ],
+    "squares" : "shared"
+  }
+}
